@@ -1,0 +1,14 @@
+{
+  "name": "strahdbot",
+  "version": "1.0.0",
+  "description": "Basic Discord bot practice",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TylerP",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
