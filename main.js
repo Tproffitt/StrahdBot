@@ -7,14 +7,16 @@ const client = new Discord.Client();
 // The character that indicates a bot command
 const prefix = '!';
 
-// 
+// Import the file system
 const fs = require('fs');
+const config = require('./config');
 
-// 
+// Define a new property to client
 client.commands = new Discord.Collection();
 
-// 
+// Get all javascript files in the commands folder
 const commandFiles = fs.readdirSync('./commands/').filter(File => File.endsWith('.js'));
+// Add all files from commandFiles into the client.commands collection
 for (const file of commandFiles){
     const command = require(`./commands/${file}`);
 
@@ -48,4 +50,4 @@ client.on('message', message => {
 })
 
 // Log out the bot
-client.login('NzQ1ODI4NDgyMTcyNDUyODc1.Xz3c5g.rHvBtjzSwrJUGO-FmzAPbPFfWSo');
+client.login(config.token);
