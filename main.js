@@ -38,14 +38,20 @@ client.on('message', message => {
     // Remove and return the first element of the args array
     const command = args.shift().toLowerCase();
 
-    switch (command){
-        case 'hello':
-            client.commands.get('hello').execute(message, args);
-            break;
-        case 'r':
-        case 'roll':
-            client.commands.get('roll').execute(message, args);
-            break;
+    try {
+        switch (command){
+            case 'hello':
+                client.commands.get('hello').execute(message, args);
+                break;
+            case 'r':
+            case 'roll':
+                client.commands.get('roll').execute(message, args);
+                break;
+            default:
+                message.channel.send("Do not waste my time with your foolish commands");
+        }
+    } catch(err) {
+        message.channel.send(err);
     }
 })
 

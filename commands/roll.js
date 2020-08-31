@@ -6,7 +6,7 @@ module.exports = {
         const command = args.shift();
         // Split into an array of before and after the d
         const values = command.split("d");
-message.channel.send(values);
+
         // Convert strings into numbers (absolute value if a negative is passed)
         var number_of_dice = Math.abs(+values[0]);
         var die_size = Math.abs(+values[1]);
@@ -17,8 +17,8 @@ message.channel.send(values);
         }
 
         // Verify that the results aren't Not a Number
-        if (isNaN(number_of_dice) || isNaN(die_size) || die_size == 0){
-            message.channel.send("Do not waste my time with your foolish commands");
+        if (isNaN(number_of_dice) || isNaN(die_size)){
+            throw "The concept of numbers seems beyond you...I am not surprised";
             return;
         }
 
@@ -28,10 +28,12 @@ message.channel.send(values);
 
         // Perform the rolls
         var results = new Array();
+        var minus = 0;
         var roll = 0;
         var total = 0;
         for (var i = 0; i < number_of_dice; i++){
-            roll = Math.floor(Math.random() * die_size) + 1;
+            minus = Math.floor(Math.random() * die_size);   // Gets a value between 0 and (die_size - 1) (inclusive)
+            roll = die_size - minus;                        // die_size - minus to be inclusive of die_size of 0
             results.push(roll);
             total += roll;
         }
